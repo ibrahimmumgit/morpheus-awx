@@ -1,1 +1,9 @@
-
+---
+- hosts: all
+vars:
+  textbox_values: "{{  morpheus['customOptions']['textbox_values'] }}"
+tasks:
+- name: Print Hello World
+  debug:
+    msg:
+    - "Hello World {{ textbox_values }}. Here are Morpheus extra_vars: {{ morpheus }}"
