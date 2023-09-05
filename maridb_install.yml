@@ -1,0 +1,33 @@
+---    
+- name: Install MariaDB and Change Root Password
+  hosts: all
+  become: yes
+  vars:
+    mariadb_password: "{{  morpheus['customOptions']['mariadb_password'] }}"
+  tasks:
+    - name: Install MariaDB Server
+      yum:
+        name: mariadb-server
+        state: present
+      notify:
+        - Start MariaDB
+
+    - name: Start MariaDB
+      systemd:
+        name: mariadb
+        state: started
+        enabled: yes
+
+    - name: Secure MariaDB installation
+      command: mysql_secure_installation
+      args:
+        stdin: |
+          Y
+          "{{ mariadb_password }}"
+          "{{ mariadb_password }}"
+          Y
+          Y
+          Y
+          Y
+      ignore_errors: yes
+
