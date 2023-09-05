@@ -6,6 +6,7 @@
   become_user: ibrahim
   vars:
     mariadb_password: "{{  morpheus['customOptions']['mariadb_password'] }}"
+    ansible_become_pass: "P@ssw0rd"
   tasks:
     - name: Install MariaDB Server
       yum:
