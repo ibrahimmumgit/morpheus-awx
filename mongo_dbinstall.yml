@@ -1,6 +1,9 @@
 ---
 - hosts: all
   gather_facts: yes
+  become: true
+  become_user: ibrahim
+  become_method: sudo
   vars:
     mongodb_password: "{{  morpheus['customOptions']['mongodb_password'] }}"
   tasks:         
