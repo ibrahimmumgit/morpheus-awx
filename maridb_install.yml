@@ -5,7 +5,6 @@
   become_method: sudo
   become_user: root
   vars:
-    mariadb_password: "{{  morpheus['customOptions']['mariadb_password'] }}"
     ansible_become_pass: "P@ssw0rd"
   tasks:
     - name: Install MariaDB Server
@@ -19,16 +18,5 @@
         state: started
         enabled: yes
 
-    - name: Secure MariaDB installation
-      command: mysql_secure_installation
-      args:
-        stdin: |
-          Y
-          "{{ mariadb_password }}"
-          "{{ mariadb_password }}"
-          Y
-          Y
-          Y
-          Y
-      ignore_errors: yes
+
 
