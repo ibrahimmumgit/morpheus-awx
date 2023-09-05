@@ -28,13 +28,13 @@
   apt: update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-  # Add or modify nofile soft limit
-- name: Set the nofile soft limit
-  pam_limits: domain=* limit_type=soft limit_item=nofile value=65535
+#   # Add or modify nofile soft limit
+# - name: Set the nofile soft limit
+#   pam_limits: domain=* limit_type=soft limit_item=nofile value=65535
 
-  # Add or modify nofile hard limit
-- name: Set the nofile hard limit
-  pam_limits: domain=* limit_type=hard limit_item=nofile value=65535
+#   # Add or modify nofile hard limit
+# - name: Set the nofile hard limit
+#   pam_limits: domain=* limit_type=hard limit_item=nofile value=65535
 
-- name: Set the file limits 
-  sysctl: name="fs.file-max" value=100000 sysctl_set=yes state=present reload=yes
+# - name: Set the file limits 
+#   sysctl: name="fs.file-max" value=100000 sysctl_set=yes state=present reload=yes
