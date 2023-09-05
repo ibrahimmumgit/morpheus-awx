@@ -12,8 +12,6 @@
       yum:
         name: mariadb-server
         state: present
-      notify:
-        - Start MariaDB
 
     - name: Start MariaDB
       systemd:
