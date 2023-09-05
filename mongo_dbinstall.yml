@@ -5,6 +5,7 @@
   gather_facts: yes
   vars:
     mongodb_password: "{{  morpheus['customOptions']['mongodb_password'] }}"
-
-  roles:
-    - mongo-3_0
+  tasks:         
+    - name: MongoDB Deployment
+      include_role:
+        name: mongo-3_0
