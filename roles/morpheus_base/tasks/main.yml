@@ -3,31 +3,31 @@
 
 # - name: pipe current time to file for rudimentary versioning
 #   shell: echo "This image was generated on $(date) " > /root/VERSION
-- name: Check if APT lock exists
-  stat:
-    path: /var/lib/apt/lists/lock
-  register: apt_lock
+# - name: Check if APT lock exists
+#   stat:
+#     path: /var/lib/apt/lists/lock
+#   register: apt_lock
 
-- name: Remove APT lock if it exists
-  file:
-    path: /var/lib/apt/lists/lock
-    state: absent
-  when: apt_lock.stat.exists
+# - name: Remove APT lock if it exists
+#   file:
+#     path: /var/lib/apt/lists/lock
+#     state: absent
+#   when: apt_lock.stat.exists
   
-- name: Check if APT lock exists
-  stat:
-    path: /var/cache/apt/archives/lock
-  register: apt_lock
+# - name: Check if APT lock exists
+#   stat:
+#     path: /var/cache/apt/archives/lock
+#   register: apt_lock
 
-- name: Remove APT lock if it exists
-  file:
-    path: /var/cache/apt/archives/lock
-    state: absent
-  when: apt_lock.stat.exists
+# - name: Remove APT lock if it exists
+#   file:
+#     path: /var/cache/apt/archives/lock
+#     state: absent
+#   when: apt_lock.stat.exists
   
-- name: Clean APT cache
-  apt:
-    autoclean: yes
+# - name: Clean APT cache
+#   apt:
+#     autoclean: yes
 
 - name: update apt
   apt: update_cache=yes
