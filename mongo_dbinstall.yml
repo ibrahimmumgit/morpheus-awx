@@ -3,7 +3,6 @@
   gather_facts: yes
   become: true
   become_method: sudo
-  become_pass: "P@ssw0rd"
   vars:
     mongodb_password: "{{  morpheus['customOptions']['mongodb_password'] }}"
   tasks:         
