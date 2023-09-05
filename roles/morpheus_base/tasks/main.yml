@@ -13,7 +13,18 @@
     path: /var/lib/apt/lists/lock
     state: absent
   when: apt_lock.stat.exists
+  
+- name: Check if APT lock exists
+  stat:
+    path: /var/cache/apt/archives/lock
+  register: apt_lock
 
+- name: Remove APT lock if it exists
+  file:
+    path: /var/cache/apt/archives/lock
+    state: absent
+  when: apt_lock.stat.exists
+  
 - name: Clean APT cache
   apt:
     autoclean: yes
