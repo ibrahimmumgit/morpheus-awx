@@ -2,6 +2,8 @@
 - name: Install MariaDB and Change Root Password
   hosts: all
   become: yes
+  become_method: sudo
+  become_user: ibrahim
   vars:
     mariadb_password: "{{  morpheus['customOptions']['mariadb_password'] }}"
   tasks:
