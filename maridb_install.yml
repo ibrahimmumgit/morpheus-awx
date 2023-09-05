@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   become_method: sudo
-  become_user: ibrahim
+  become_user: root
   vars:
     mariadb_password: "{{  morpheus['customOptions']['mariadb_password'] }}"
     ansible_become_pass: "P@ssw0rd"
