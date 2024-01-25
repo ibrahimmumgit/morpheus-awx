@@ -1,7 +1,8 @@
 ---
 - hosts: all
   tasks:
-  - name: Print Hello World
-    debug:
-      msg:
-      - "Hello World  Here are Morpheus extra_vars: {{ morpheus }}"
+    - name: ping
+      shell: ping -c 1 -w 2 8.8.8.8
+      ignore_errors: true
+    - name: Example from an Ansible Playbook
+      ansible.builtin.ping:
