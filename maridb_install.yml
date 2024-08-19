@@ -1,22 +1,44 @@
----    
-- name: Install MariaDB and Change Root Password
+---
+- name: Ensure MariaDB (MySQL) is installed and running on CentOS, Ubuntu, or Windows
   hosts: all
+  gather_facts: yes
   become: yes
   become_method: sudo
-  become_user: root
-  vars:
-    ansible_become_pass: "P@ssw0rd"
   tasks:
-    - name: Install MariaDB Server
+    - name: Install MariaDB on CentOS
       yum:
         name: mariadb-server
         state: present
+      when: ansible_os_family == "RedHat"
 
-    - name: Start MariaDB
-      systemd:
+    - name: Ensure MariaDB is running on CentOS
+      service:
         name: mariadb
         state: started
-        enabled: yes
+      when: ansible_os_family == "RedHat"
 
+    - name: Install MariaDB on Ubuntu
+      apt:
+        name: mariadb-server
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
 
+    - name: Ensure MariaDB is running on Ubuntu
+      service:
+        name: mariadb
+        state: started
+      when: ansible_os_family == "Debian"
 
+    - name: Install MariaDB on Windows
+      win_chocolatey:
+        name: mariadb
+        state: present
+      when: ansible_os_family == "Windows"
+
+    - name: Ensure MariaDB is running on Windows
+      win_service:
+        name: mariadb
+        start_mode: auto
+        state: started
+      when: ansible_os_family == "Windows"
