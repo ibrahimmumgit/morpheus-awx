@@ -30,15 +30,3 @@
         state: started
       when: ansible_os_family == "Debian"
 
-    - name: Install MariaDB on Windows
-      win_chocolatey:
-        name: mariadb
-        state: present
-      when: ansible_os_family == "Windows"
-
-    - name: Ensure MariaDB is running on Windows
-      win_service:
-        name: mariadb
-        start_mode: auto
-        state: started
-      when: ansible_os_family == "Windows"
